@@ -12,18 +12,19 @@ public class Gun : MonoBehaviour
     void Start()
     {
         bullets = new GameObject[count];
-        for (int i = 0; i < count; i++)
+        for(int i=0; i<count; i++)
         {
             bullets[i] = Instantiate(bulletPrefab, poolPosition, Quaternion.identity);
         }
     }
+
     void Update()
     {
         if (GameManager.instance.isGameover)
         {
             Destroy(gameObject);
         }
-        if (Input.GetAxis("Fire1") > 0)
+        if(Input.GetAxis("Fire1") > 0)
         {
             bullets[index].transform.position = transform.position + new Vector3(0, 0.3f, 0);
             bullets[index].SetActive(true);

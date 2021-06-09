@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -14,16 +13,14 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+        if (instance == null) instance = this;
         else
         {
-            Debug.LogWarning("두 개 이상의 게임 매니저가 존재합니다!");
+            Debug.LogWarning("두 개 이상의 게임매니저가 존재합니다!");
             Destroy(gameObject);
         }
     }
+
     void Update()
     {
         if (isGameover && Input.GetKeyDown(KeyCode.R))
@@ -34,16 +31,19 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+
     }
+
     public void AddScore(int newScore)
     {
         score += newScore;
-        if (score < 0)
+        if(score < 0)
         {
             OnPlayerDead();
         }
         scoreText.text = "Score : " + score;
     }
+
     public void OnPlayerDead()
     {
         isGameover = true;
